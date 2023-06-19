@@ -1,46 +1,17 @@
-package com.Proyecto.BackIpsSaniUis.model;
+package com.Proyecto.BackIpsSaniUis.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(schema = "GENERAL", name = "USUARIO")
-public class Usuario {
+public class UsuarioDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_USUARIO")
     private Long idUsuario;
-
-    @Column(name = "PRIMER_NOMBRE", nullable = false)
     private String primerNombre;
-
-    @Column(name = "CONTRASENA", nullable = false)
     private String contraseña;
-
-    @Column(name = "SEGUNDO_NOMBRE")
     private String segundoNombre;
-
-    @Column(name = "PRIMER_APELLIDO", nullable = false)
     private String primerApellido;
-
-    @Column(name = "SEGUNDO_APELLIDO")
     private String segundoApellido;
-
-    @Column(name = "DOCUMENTO_IDENTIDAD", unique = true, nullable = false)
     private Integer documentoIdentidad;
-
-    @Column(name = "FECHA_CREACION")
     private LocalDateTime fechaCreacion;
-
-    @Column(name = "CORREO_ELECTRONICO", unique = true, nullable = false)
     private String correoElectronico;
 
     // Getters and Setters
