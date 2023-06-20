@@ -1,4 +1,5 @@
 package com.Proyecto.BackIpsSaniUis.mappers;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -11,9 +12,10 @@ public interface UsuarioMappers {
 
     UsuarioMappers INSTANCE = Mappers.getMapper(UsuarioMappers.class);
 
-    @Mapping(target = "contraseña", source = "contraseña") // Si los nombres son diferentes
+    @Mapping(target = "contraseña", ignore = true)
     UsuarioDTO usuarioToUsuarioDTO(Usuario usuario);
 
     @Mapping(target = "contraseña", source = "contraseña") // Si los nombres son diferentes
     Usuario usuarioDTOToUsuario(UsuarioDTO usuarioDTO);
 }
+
