@@ -13,6 +13,8 @@ public class UsuarioDTO {
     private Integer documentoIdentidad;
     private LocalDateTime fechaCreacion;
     private String correoElectronico;
+    private Long idRol;
+    private String descripcionRol;
 
     // Getters and Setters
 
@@ -87,4 +89,21 @@ public class UsuarioDTO {
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
     }
+
+    public Long getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(Long idrol) {
+        this.idRol = idrol;
+    }
+
+    public String getDescripcionRol() {
+        return descripcionRol;
+    }
+
+    public void setDescripcionRol(String descripcionRol) {
+        this.descripcionRol = descripcionRol;
+    }
+    
 }
