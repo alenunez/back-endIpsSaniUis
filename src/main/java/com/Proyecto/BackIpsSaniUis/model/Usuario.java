@@ -45,6 +45,18 @@ public class Usuario {
     @Column(name = "CORREO_ELECTRONICO", unique = true, nullable = false)
     private String correoElectronico;
 
+    // Columnas llaves foráneas
+    @Column(name = "ID_ROL", nullable = false)
+    private Long idRol;
+
+        // Datos que se trae por la foránea
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_ROL", insertable = false, updatable = false)
+    private Rol rol;
+    
+    
+
     // Getters and Setters
 
     public Long getIdUsuario() {
