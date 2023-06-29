@@ -36,7 +36,7 @@ public class MarcaMedicamentoController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<MarcaMedicamentoDTO> updateUsuario(@RequestBody MarcaMedicamentoDTO marcaMedicamentoDTO) {
+    public ResponseEntity<MarcaMedicamentoDTO> updateMarcaMedicamento(@RequestBody MarcaMedicamentoDTO marcaMedicamentoDTO) {
 
         MarcaMedicamentoDTO marcaMedicamentoDTOUpdate= MarcaMedicamentoMapperImpl.INSTANCE.toDto(iMarcaMedicamentoService.updateMarcaMedicamento(marcaMedicamentoDTO));
 
@@ -49,7 +49,7 @@ public class MarcaMedicamentoController {
 
 
     @GetMapping("/all")
-    public ResponseEntity<List<MarcaMedicamentoDTO>> getRoles(){
+    public ResponseEntity<List<MarcaMedicamentoDTO>> getMarcaMedicamentos(){
         List<MarcaMedicamento> listaMarcaMedicamentos = iMarcaMedicamentoService.getAllMarcaMedicamentos();
         if(listaMarcaMedicamentos.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -68,7 +68,7 @@ public class MarcaMedicamentoController {
     }
     
     @DeleteMapping("/id/{id}")
-    public ResponseEntity<String> deleteRol(@PathVariable(value = "id", required = true) Long aId){
+    public ResponseEntity<String> deleteMarcaMedicamento(@PathVariable(value = "id", required = true) Long aId){
         MarcaMedicamento marcaMedicamento = iMarcaMedicamentoService.deleteMarcaMedicamento(aId);
         if(marcaMedicamento ==null){
             return new ResponseEntity<>("No existe la marca de medicamento con el id ingresado",HttpStatus.NO_CONTENT);
