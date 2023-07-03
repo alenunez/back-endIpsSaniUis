@@ -39,7 +39,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
     @Override
     public Usuario login(UsuarioDTO usuarioDTO) {
         String correoElectronico = usuarioDTO.getCorreoElectronico();
-        String contraseña = usuarioDTO.getContraseña();
+        String contraseña = usuarioDTO.getContrasena();
         // Buscar el usuario por el correo electrónico
         Optional<Usuario> optionalUsuario = usuarioRepository.findByCorreoElectronico(correoElectronico);
         if (optionalUsuario.isPresent()) {

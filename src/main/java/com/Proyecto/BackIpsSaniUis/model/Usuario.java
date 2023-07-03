@@ -25,7 +25,7 @@ public class Usuario {
     private String primerNombre;
 
     @Column(name = "CONTRASENA", nullable = false)
-    private String contraseña;
+    private String contrasena;
 
     @Column(name = "SEGUNDO_NOMBRE")
     private String segundoNombre;
@@ -76,11 +76,11 @@ public class Usuario {
     }
 
     public String getContraseña() {
-        return contraseña;
+        return contrasena;
     }
 
     public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+        this.contrasena = contraseña;
     }
 
     public String getSegundoNombre() {

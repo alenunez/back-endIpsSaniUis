@@ -46,16 +46,17 @@ public class UsuarioController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UsuarioDTO loginRequest) {
-
+    public ResponseEntity<Object> login(@RequestBody UsuarioDTO loginRequest) {
         UsuarioDTO usuarioLogin = UsuarioMappersImpl.INSTANCE.usuarioToUsuarioDTO(iUsuarioService.login(loginRequest));
-        if(usuarioLogin != null){
-            return new ResponseEntity<>("Inicio de sesión exitoso", HttpStatus.CREATED);
-
+        if (usuarioLogin != null) {
+            // Devolver un objeto JSON con el mensaje de éxito
+            return ResponseEntity.status(HttpStatus.CREATED).body("{\"message\": \"Inicio de sesión exitoso\"}");
         }
 
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
+        // Devolver un objeto JSON con el mensaje de error
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\": \"Credenciales inválidas\"}");
     }
+
 
     @GetMapping("/all")
     public ResponseEntity<List<UsuarioDTO>> getUsuarios(){
