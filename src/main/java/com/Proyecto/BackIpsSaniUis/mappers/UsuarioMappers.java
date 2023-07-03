@@ -12,11 +12,11 @@ public interface UsuarioMappers {
 
     UsuarioMappers INSTANCE = Mappers.getMapper(UsuarioMappers.class);
 
-    @Mapping(target = "contraseña", ignore = true)
+    @Mapping(target = "contrasena", ignore = true)
     @Mapping(target = "descripcionRol", source = "rol.descripcion")
     UsuarioDTO usuarioToUsuarioDTO(Usuario usuario);
 
-    @Mapping(target = "contraseña", source = "contraseña") // Si los nombres son diferentes
+    @Mapping(target = "contrasena", source = "contrasena") // Si los nombres son diferentes
     Usuario usuarioDTOToUsuario(UsuarioDTO usuarioDTO);
 }
 

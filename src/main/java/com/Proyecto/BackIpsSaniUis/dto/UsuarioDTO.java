@@ -6,7 +6,7 @@ public class UsuarioDTO {
 
     private Long idUsuario;
     private String primerNombre;
-    private String contraseña;
+    private String contrasena;
     private String segundoNombre;
     private String primerApellido;
     private String segundoApellido;
@@ -34,12 +34,12 @@ public class UsuarioDTO {
         this.primerNombre = primerNombre;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getSegundoNombre() {
