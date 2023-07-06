@@ -63,6 +63,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
             usuario.setSegundoNombre(usuarioDTO.getSegundoNombre());
             usuario.setPrimerApellido(usuarioDTO.getPrimerApellido());
             usuario.setSegundoApellido(usuarioDTO.getSegundoApellido());
+            usuario.setIdRol(usuarioDTO.getIdRol());
             if (usuarioDTO.getDocumentoIdentidad() != null) {
                 usuario.setDocumentoIdentidad(usuarioDTO.getDocumentoIdentidad());
             }
