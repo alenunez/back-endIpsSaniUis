@@ -12,7 +12,6 @@ public interface UsuarioMappers {
 
     UsuarioMappers INSTANCE = Mappers.getMapper(UsuarioMappers.class);
 
-    @Mapping(target = "contrasena", ignore = true)
     @Mapping(target = "descripcionRol", source = "rol.descripcion")
     UsuarioDTO usuarioToUsuarioDTO(Usuario usuario);
 
