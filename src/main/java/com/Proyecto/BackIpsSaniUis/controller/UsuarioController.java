@@ -1,6 +1,8 @@
 package com.Proyecto.BackIpsSaniUis.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import com.Proyecto.BackIpsSaniUis.mappers.UsuarioMappers;
 import com.Proyecto.BackIpsSaniUis.mappers.UsuarioMappersImpl;
 import com.Proyecto.BackIpsSaniUis.model.Usuario;
 import com.Proyecto.BackIpsSaniUis.service.interfaces.IUsuarioService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/usuario")
@@ -80,12 +83,19 @@ public class UsuarioController {
         return new ResponseEntity<>(UsuarioMappers.INSTANCE.usuarioToUsuarioDTO(usuario), HttpStatus.OK);
     }
     @DeleteMapping("/id/{id}")
-    public ResponseEntity<String> deleteUsuario(@PathVariable(value = "id", required = true) Long aId){
+    public ResponseEntity<Object> deleteUsuario(@PathVariable(value = "id", required = true) Long aId) {
         Usuario usuario = iUsuarioService.deleteUsuario(aId);
-        if(usuario ==null){
-            return new ResponseEntity<>("No existe el usuario con el id ingresado",HttpStatus.NO_CONTENT);
+        if (usuario == null) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT)
+                    .body("{\"message\": \"No existe el usuario con el id ingresado\"}");
         }
-        return new ResponseEntity<>("Se ha eliminado el registro", HttpStatus.OK);
+        
+        // Crear un objeto JSON para devolver como respuesta
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String, String> jsonResponse = new HashMap<>();
+        jsonResponse.put("message", "Se ha eliminado el registro");
+        
+        return ResponseEntity.status(HttpStatus.OK).body(jsonResponse);
     }
 
     @Autowired
