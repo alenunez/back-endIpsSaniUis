@@ -13,12 +13,10 @@ public interface MedicoMapper {
     MedicoMapper INSTANCE = Mappers.getMapper(MedicoMapper.class);
 
     @Mapping(target = "primerNombreUsuario", source = "usuario.primerNombre")
-    @Mapping(target = "contraseñaUsuario", source = "usuario.contraseña")
     @Mapping(target = "segundoNombreUsuario", source = "usuario.segundoNombre")
     @Mapping(target = "primerApellidoUsuario", source = "usuario.primerApellido")
     @Mapping(target = "segundoApellidoUsuario", source = "usuario.segundoApellido")
-    @Mapping(target = "documentoIdentidadUsuario", source = "usuario.documentoIdentidad")
-    @Mapping(target = "correoElectronicoUsuario", source = "usuario.correoElectronico")
+    @Mapping(target = "idUsuario", source = "usuario.idUsuario")
     @Mapping(target = "descripcionEspecialidadMedica", source = "especialidadMedica.descripcion")
     MedicoDTO toDto(Medico medico);
 

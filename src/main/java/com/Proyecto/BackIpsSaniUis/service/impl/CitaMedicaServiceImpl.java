@@ -18,18 +18,35 @@ public class CitaMedicaServiceImpl implements ICitaMedicaService {
                 
     CitaMedicaRepository citaMedicaRepository;
     LocalDateTime today = LocalDateTime.now();
-
     @Override
     public CitaMedica createCitaMedica(CitaMedicaDTO citaMedicaDTO) {
-        CitaMedica citaMedicaToCreate = CitaMedicaMapper.INSTANCE.toEntity(citaMedicaDTO);
-        citaMedicaToCreate.setFechaCreacion(today); // Asignación de fecha de creación automática
-        citaMedicaToCreate.setFechaCita(citaMedicaDTO.getFechaCita()); // Asignación de fecha de la cita
-        return citaMedicaRepository.save(citaMedicaToCreate);
+        List<CitaMedica> citasMedicos = citaMedicaRepository.findByMedicoAndFechaAndHoraCita(citaMedicaDTO.getIdMedico(), citaMedicaDTO.getFechaCita(), citaMedicaDTO.getHoraCita());
+        List<CitaMedica> citasUsuarios = citaMedicaRepository.findByUsuarioAndFechaAndHoraCita(citaMedicaDTO.getIdUsuario(), citaMedicaDTO.getFechaCita(), citaMedicaDTO.getHoraCita());
+    
+        if (citasMedicos.isEmpty() && citasUsuarios.isEmpty()) {
+            CitaMedica citaMedicaToCreate = CitaMedicaMapper.INSTANCE.toEntity(citaMedicaDTO);
+            citaMedicaToCreate.setFechaCreacion(today); // Asignar fecha y hora de creación
+            citaMedicaToCreate.setFechaCita(citaMedicaDTO.getFechaCita()); // Asignar fecha de la cita
+            citaMedicaToCreate.setHoraCita(citaMedicaDTO.getHoraCita()); // Asignar hora de la cita
+    
+            return citaMedicaRepository.save(citaMedicaToCreate);
+        } else {
+            // Manejar la lógica en caso de citas existentes a la misma hora
+            // Por ejemplo, lanzar una excepción, mostrar un mensaje de error, etc.
+            return null;
+        }
     }
+    
 
     @Override
     public List<CitaMedica> getAllCitaMedica() {
         return citaMedicaRepository.findAll();
+    }
+
+
+    @Override
+    public List<CitaMedica> getAllCitaMedicaUsuario(Long id) {
+        return citaMedicaRepository.findByUsuario(id);
     }
 
     @Override

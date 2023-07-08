@@ -44,6 +44,16 @@ public class MedicoController {
         ::toDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 
+    @GetMapping("/especialidad/{id}")
+    public ResponseEntity<List<MedicoDTO>> getMedicosPorEspecialidad(@PathVariable(value = "id", required = true) Long aId){
+        List<Medico> listaMedicos = iMedicoService.findByEspecialidad(aId);
+        if(listaMedicos.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(listaMedicos.stream().map(MedicoMapper.INSTANCE
+        ::toDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
     @GetMapping("/id/{id}")
     public ResponseEntity<MedicoDTO> getById(@PathVariable(value = "id", required = true) Long aId){
         Medico medico = iMedicoService.findById(aId);

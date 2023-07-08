@@ -1,6 +1,8 @@
 package com.Proyecto.BackIpsSaniUis.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +30,19 @@ public class CitaMedicaController {
     ICitaMedicaService iCitaMedicaService;
 
     @PostMapping("/insert")
-    public ResponseEntity<CitaMedicaDTO> createCitaMedica(@RequestBody CitaMedicaDTO citaMedicaDTO) {
-
-        CitaMedicaDTO citaMedicaDTOCreated = CitaMedicaMapperImpl.INSTANCE.toDto(iCitaMedicaService.createCitaMedica(citaMedicaDTO));
-
-        return new ResponseEntity<>(citaMedicaDTOCreated, HttpStatus.CREATED);
+    public ResponseEntity<?> createCitaMedica(@RequestBody CitaMedicaDTO citaMedicaDTO) {
+        CitaMedica citaMedica = iCitaMedicaService.createCitaMedica(citaMedicaDTO);
+    
+        if (citaMedica != null) {
+            CitaMedicaDTO citaMedicaDTOCreated = CitaMedicaMapper.INSTANCE.toDto(citaMedica);
+            return new ResponseEntity<>(citaMedicaDTOCreated, HttpStatus.CREATED);
+        } else {
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("message", "No se puede crear la cita médica en el horario especificado");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        }
     }
+    
 
     @PutMapping("/update")
     public ResponseEntity<CitaMedicaDTO> updateCitaMedica(@RequestBody CitaMedicaDTO citaMedicaDTO) {
@@ -56,6 +65,16 @@ public class CitaMedicaController {
         ::toDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 
+    @GetMapping("/all/usuario/id/{id}")
+    public ResponseEntity<List<CitaMedicaDTO>> getCitaMedicaUsuario(@PathVariable(value = "id", required = true) Long aId){
+        List<CitaMedica> listaCitaMedica = iCitaMedicaService.getAllCitaMedicaUsuario(aId);
+        if(listaCitaMedica.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(listaCitaMedica.stream().map(CitaMedicaMapper.INSTANCE
+        ::toDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
     @GetMapping("/id/{id}")
     public ResponseEntity<CitaMedicaDTO> getById(@PathVariable(value = "id", required = true) Long aId){
         CitaMedica citaMedica = iCitaMedicaService.findById(aId);
@@ -65,12 +84,16 @@ public class CitaMedicaController {
         return new ResponseEntity<>(CitaMedicaMapper.INSTANCE.toDto(citaMedica), HttpStatus.OK);
     }
     @DeleteMapping("/id/{id}")
-    public ResponseEntity<String> deleteCitaMedica(@PathVariable(value = "id", required = true) Long aId){
+    public ResponseEntity<Map<String, String>> deleteCitaMedica(@PathVariable(value = "id", required = true) Long aId) {
         CitaMedica citaMedica = iCitaMedicaService.deleteCitaMedica(aId);
-        if(citaMedica ==null){
-            return new ResponseEntity<>("No existe la cita medica con el id ingresado",HttpStatus.NO_CONTENT);
+        if (citaMedica == null) {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "No existe la cita medica con el id ingresado");
+            return new ResponseEntity<>(response, HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>("Se ha eliminado el registro", HttpStatus.OK);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Se ha eliminado el registro");
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Autowired

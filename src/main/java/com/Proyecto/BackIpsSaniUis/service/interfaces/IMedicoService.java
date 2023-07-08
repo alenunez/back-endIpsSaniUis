@@ -16,6 +16,9 @@ public interface IMedicoService {
 
     public Medico findById(Long id);
 
+    public List<Medico> findByEspecialidad(Long id);
+
+
     public Medico deleteMedico(Long id);
 
 }
