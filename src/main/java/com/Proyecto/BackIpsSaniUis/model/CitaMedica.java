@@ -8,6 +8,8 @@ import javax.persistence.*;
 
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Date;
 
 @Entity
 @Data
@@ -22,7 +24,11 @@ public class CitaMedica {
     private Long idCitaMedica;
 
     @Column(name = "FECHA_CITA")
-    private LocalDateTime fechaCita;
+    @Temporal(TemporalType.DATE)
+    private Date fechaCita;
+
+    @Column(name = "HORA_CITA")
+    private LocalTime horaCita;
 
     @Column(name = "FECHA_CREACION")
     private LocalDateTime fechaCreacion;
@@ -44,11 +50,11 @@ public class CitaMedica {
     private Medico medico;
 
     // Getters and Setters
-    public LocalDateTime getFechaCita() {
+    public Date getFechaCita() {
         return fechaCita;
     }
 
-    public void setFechaCita(LocalDateTime fechaCita) {
+    public void setFechaCita(Date fechaCita) {
         this.fechaCita = fechaCita;
     }
 
@@ -59,5 +65,6 @@ public class CitaMedica {
     public void setFechaCreacion(LocalDateTime fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
+    
     
 }

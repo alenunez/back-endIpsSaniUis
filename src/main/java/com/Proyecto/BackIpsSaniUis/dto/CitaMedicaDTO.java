@@ -1,20 +1,23 @@
 package com.Proyecto.BackIpsSaniUis.dto;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Date;
 
 public class CitaMedicaDTO {
 
     private Long idCitaMedica;
-    private LocalDateTime fechaCita;
+    private Date fechaCita;
+    private LocalTime horaCita;
+
     private LocalDateTime fechaCreacion;
     private Long idUsuario;
     private String primerNombreUsuario;
-    private String contraseñaUsuario;
-    private String segundoNombreUsuario;
+    private String primerNombreMedico;
+    private String primerApellidoMedico;
+
     private String primerApellidoUsuario;
-    private String segundoApellidoUsuario;
-    private Integer documentoIdentidadUsuario;
-    private String correoElectronicoUsuario; 
+
     private Long idMedico;
 
     public Long getIdCitaMedica() {
@@ -25,11 +28,11 @@ public class CitaMedicaDTO {
         this.idCitaMedica = idCitaMedica;
     }
 
-    public LocalDateTime getFechaCita() {
+    public Date getFechaCita() {
         return fechaCita;
     }
 
-    public void setFechaCita(LocalDateTime fechaCita) {
+    public void setFechaCita(Date fechaCita) {
         this.fechaCita = fechaCita;
     }
 
@@ -57,60 +60,45 @@ public class CitaMedicaDTO {
         this.primerNombreUsuario = primerNombreUsuario;
     }
 
-    public String getContraseñaUsuario() {
-        return contraseñaUsuario;
-    }
-
-    public void setContraseñaUsuario(String contraseñaUsuario) {
-        this.contraseñaUsuario = contraseñaUsuario;
-    }
-
-    public String getSegundoNombreUsuario() {
-        return segundoNombreUsuario;
-    }
-
-    public void setSegundoNombreUsuario(String segundoNombreUsuario) {
-        this.segundoNombreUsuario = segundoNombreUsuario;
-    }
-
     public String getPrimerApellidoUsuario() {
         return primerApellidoUsuario;
+    }
+
+    public String getPrimerNombreMedico() {
+        return primerNombreMedico;
+    }
+
+    public void setPrimerNombreMedico(String primerNombreMedico) {
+        this.primerNombreMedico = primerNombreMedico;
+    }
+
+    public String getPrimerApellidoMedico() {
+        return primerApellidoMedico;
+    }
+
+    public void setPrimerApellidoMedico(String primerApellidoMedico) {
+        this.primerApellidoMedico = primerApellidoMedico;
     }
 
     public void setPrimerApellidoUsuario(String primerApellidoUsuario) {
         this.primerApellidoUsuario = primerApellidoUsuario;
     }
 
-    public String getSegundoApellidoUsuario() {
-        return segundoApellidoUsuario;
-    }
-
-    public void setSegundoApellidoUsuario(String segundoApellidoUsuario) {
-        this.segundoApellidoUsuario = segundoApellidoUsuario;
-    }
-
-    public Integer getDocumentoIdentidadUsuario() {
-        return documentoIdentidadUsuario;
-    }
-
-    public void setDocumentoIdentidadUsuario(Integer documentoIdentidadUsuario) {
-        this.documentoIdentidadUsuario = documentoIdentidadUsuario;
-    }
-
-    public String getCorreoElectronicoUsuario() {
-        return correoElectronicoUsuario;
-    }
-
-    public void setCorreoElectronicoUsuario(String correoElectronicoUsuario) {
-        this.correoElectronicoUsuario = correoElectronicoUsuario;
-    }
-
-   public Long getIdMedico() {
+    public Long getIdMedico() {
         return idMedico;
     }
 
     public void setIdMedico(Long idMedico) {
         this.idMedico = idMedico;
     }
+
+    public LocalTime getHoraCita() {
+        return horaCita;
+    }
+
+    public void setHoraCita(LocalTime horaCita) {
+        this.horaCita = horaCita;
+    }
+    
 
 }

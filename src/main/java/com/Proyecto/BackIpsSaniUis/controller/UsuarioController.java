@@ -47,20 +47,18 @@ public class UsuarioController {
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody UsuarioDTO loginRequest) {
         UsuarioDTO usuarioLogin = UsuarioMappersImpl.INSTANCE.usuarioToUsuarioDTO(iUsuarioService.login(loginRequest));
         if (usuarioLogin != null) {
-            Long rol = usuarioLogin.getIdRol();
-
-            // Devolver el valor de rol en la respuesta con el estado CREATED
-            return ResponseEntity.status(HttpStatus.CREATED).body(rol);
+            // Devolver el DTO del usuario en la respuesta con el estado OK
+            return ResponseEntity.ok(usuarioLogin);
         }
     
         // Devolver un objeto JSON con el mensaje de error
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\": \"Credenciales inválidas\"}");
     }
+    
     
 
 

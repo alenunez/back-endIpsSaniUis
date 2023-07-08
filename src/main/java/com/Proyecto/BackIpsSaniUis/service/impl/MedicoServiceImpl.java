@@ -36,9 +36,14 @@ public class MedicoServiceImpl implements IMedicoService {
     }
 
     @Override
+    public List<Medico>  findByEspecialidad(Long idEspecialidad) {
+        return medicoRepository.findByEspecialidad(idEspecialidad);
+    }
+
+    @Override
     public Medico deleteMedico(Long id){
         Medico medico = medicoRepository.findById(id).orElseThrow(null);
-        if(medico != null){
+        if(medico!= null){
             medicoRepository.delete(medico);
             return medico;
         }

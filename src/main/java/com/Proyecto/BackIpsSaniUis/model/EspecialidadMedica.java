@@ -24,7 +24,7 @@ public class EspecialidadMedica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ESPECIALIDAD_MEDICA")
-    private Long idEspecialidadMedica;
+    public Long idEspecialidadMedica;
 
     @Column(name = "DESCRIPCION", nullable = false)
     private String descripcion;

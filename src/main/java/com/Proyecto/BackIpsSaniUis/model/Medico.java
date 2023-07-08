@@ -6,16 +6,20 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-
+import java.io.Serializable;
 import java.time.LocalDateTime;
+
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(schema = "GENERAL", name = "MEDICO")
-public class Medico {
-            
+public class Medico implements Serializable{
+    private static final long serialVersionUID = -6115592560033265393L;
+
+        
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_MEDICO")
@@ -31,14 +35,15 @@ public class Medico {
     @Column(name = "ID_ESPECIALIDAD_MEDICA", nullable = false)
     private Long idEspecialidadMedica;
 
-    //Datos que se traen por la foránea
+    //Datos que se traen por la 
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_USUARIO", insertable = false, updatable = false)
     private Usuario usuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_ESPECIALIDAD_MEDICA", insertable = false, updatable = false)
-    private EspecialidadMedica especialidadMedica;
+    public EspecialidadMedica especialidadMedica;
 
     // Getters and Setters
     public LocalDateTime getFechaCreacion() {
@@ -48,5 +53,6 @@ public class Medico {
     public void setFechaCreacion(LocalDateTime fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
+
     
 }
