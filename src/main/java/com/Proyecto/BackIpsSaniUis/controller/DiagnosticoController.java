@@ -64,6 +64,16 @@ public class DiagnosticoController {
         }
         return new ResponseEntity<>(DiagnosticoMapper.INSTANCE.toDto(diagnostico), HttpStatus.OK);
     }
+
+    @GetMapping("/idCita/{id}")
+    public ResponseEntity<DiagnosticoDTO> getByCita(@PathVariable(value = "id", required = true) Long aId){
+        Diagnostico diagnostico = iDiagnosticoService.findByCita(aId);
+        if(diagnostico ==null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(DiagnosticoMapper.INSTANCE.toDto(diagnostico), HttpStatus.OK);
+    }
+
     @DeleteMapping("/id/{id}")
     public ResponseEntity<String> deleteDiagnostico(@PathVariable(value = "id", required = true) Long aId){
         Diagnostico diagnostico = iDiagnosticoService.deleteDiagnostico(aId);

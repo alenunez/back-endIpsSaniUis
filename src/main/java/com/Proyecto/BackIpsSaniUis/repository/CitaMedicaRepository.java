@@ -23,5 +23,7 @@ public interface CitaMedicaRepository extends JpaRepository<CitaMedica, Long> {
     @Query("SELECT c FROM CitaMedica c WHERE c.usuario.idUsuario = :idUsuario")
     List<CitaMedica> findByUsuario(@Param("idUsuario") Long idUsuario);
 
+    @Query("SELECT c FROM CitaMedica c WHERE c.medico.usuario.idUsuario = :idMedico AND c.estadoCita = 1")
+    List<CitaMedica> findByMedico(@Param("idMedico") Long idMedico);
     
 }

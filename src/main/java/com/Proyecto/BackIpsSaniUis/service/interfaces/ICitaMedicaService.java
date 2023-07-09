@@ -16,6 +16,9 @@ public interface ICitaMedicaService {
 
     public List<CitaMedica> getAllCitaMedicaUsuario(Long id);
 
+    public List<CitaMedica> getAllCitaMedicaMedico(Long id);
+
+
 
     public CitaMedica findById(Long id);
 

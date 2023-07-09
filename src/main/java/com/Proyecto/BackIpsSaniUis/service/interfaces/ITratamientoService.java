@@ -12,6 +12,9 @@ public interface ITratamientoService {
             
     public Tratamiento createTratamiento(TratamientoDTO tratamientoDTO);
 
+    public Tratamiento getTratamientoPorCita(Long idCita);
+
+
     public List<Tratamiento> getAllTratamientos();
 
     public Tratamiento findById(Long id);

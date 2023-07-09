@@ -36,6 +36,11 @@ public class DiagnosticoServiceImpl implements IDiagnosticoService {
         return diagnosticoRepository.findById(id).orElse(null);
     }
 
+    @Override
+    public Diagnostico findByCita(Long id) {
+        return diagnosticoRepository.findByCita(id);
+    }
+
     public Diagnostico updateDiagnostico(DiagnosticoDTO diagnosticoDTO) {
         Optional<Diagnostico> optionalDiagnostico = diagnosticoRepository.findById(diagnosticoDTO.getIdDiagnostico());
         if (optionalDiagnostico.isPresent()) {

@@ -75,6 +75,16 @@ public class CitaMedicaController {
         ::toDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 
+    @GetMapping("/all/medico/id/{id}")
+    public ResponseEntity<List<CitaMedicaDTO>> getCitaMedicaMedico(@PathVariable(value = "id", required = true) Long aId){
+        List<CitaMedica> listaCitaMedica = iCitaMedicaService.getAllCitaMedicaMedico(aId);
+        if(listaCitaMedica.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(listaCitaMedica.stream().map(CitaMedicaMapper.INSTANCE
+        ::toDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
     @GetMapping("/id/{id}")
     public ResponseEntity<CitaMedicaDTO> getById(@PathVariable(value = "id", required = true) Long aId){
         CitaMedica citaMedica = iCitaMedicaService.findById(aId);

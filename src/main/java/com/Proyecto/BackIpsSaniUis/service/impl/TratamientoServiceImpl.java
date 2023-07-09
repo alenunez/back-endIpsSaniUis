@@ -36,6 +36,11 @@ public class TratamientoServiceImpl implements ITratamientoService {
         return tratamientoRepository.findById(id).orElse(null);
     }
 
+    @Override
+    public Tratamiento getTratamientoPorCita(Long id) {
+        return tratamientoRepository.findByCita(id);
+    }
+
     public Tratamiento updateTratamiento(TratamientoDTO tratamientoDTO) {
         Optional<Tratamiento> optionalTratamiento = tratamientoRepository.findById(tratamientoDTO.getIdTratamiento());
         if (optionalTratamiento.isPresent()) {
