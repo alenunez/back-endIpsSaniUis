@@ -1,6 +1,8 @@
 package com.Proyecto.BackIpsSaniUis.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import com.Proyecto.BackIpsSaniUis.mappers.EnfermedadMapper;
 import com.Proyecto.BackIpsSaniUis.mappers.EnfermedadMapperImpl;
 import com.Proyecto.BackIpsSaniUis.model.Enfermedad;
 import com.Proyecto.BackIpsSaniUis.service.interfaces.IEnfermedadService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/enfermedad")
@@ -68,12 +71,19 @@ public class EnfermedadController {
     }
     
     @DeleteMapping("/id/{id}")
-    public ResponseEntity<String> deleteEnfermedad(@PathVariable(value = "id", required = true) Long aId){
+    public ResponseEntity<Object> deleteEnfermedad(@PathVariable(value = "id", required = true) Long aId) {
         Enfermedad enfermedad = iEnfermedadService.deleteEnfermedad(aId);
-        if(enfermedad ==null){
-            return new ResponseEntity<>("No existe la enfermedad con el id ingresado",HttpStatus.NO_CONTENT);
+        if (enfermedad == null) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT)
+                    .body("{\"message\": \"No existe la enfermedad con el id ingresado\"}");
         }
-        return new ResponseEntity<>("Se ha eliminado el registro", HttpStatus.OK);
+        
+        // Crear un objeto JSON para devolver como respuesta
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String, String> jsonResponse = new HashMap<>();
+        jsonResponse.put("message", "Se ha eliminado el registro");
+        
+        return ResponseEntity.status(HttpStatus.OK).body(jsonResponse);
     }
 
     @Autowired
