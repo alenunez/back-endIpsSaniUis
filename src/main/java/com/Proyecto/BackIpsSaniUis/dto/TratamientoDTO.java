@@ -1,13 +1,14 @@
 package com.Proyecto.BackIpsSaniUis.dto;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class TratamientoDTO {
     
     private Long idTratamiento;
     private String descripcion;
     private Long idCitaMedica;
-    private LocalDateTime fechaCitaCitaMedica;
+    private Date fechaCitaCitaMedica;
     private LocalDateTime fechaCreacion;
 
     public Long getIdTratamiento() {
@@ -42,11 +43,11 @@ public class TratamientoDTO {
         this.idCitaMedica = idCitaMedica;
     }
 
-    public LocalDateTime getFechaCitaCitaMedica() {
+    public Date getFechaCitaCitaMedica() {
         return fechaCitaCitaMedica;
     }
 
-    public void setFechaCitaCitaMedica(LocalDateTime fechaCitaCitaMedica) {
+    public void setFechaCitaCitaMedica(Date fechaCitaCitaMedica) {
         this.fechaCitaCitaMedica = fechaCitaCitaMedica;
     }
 }

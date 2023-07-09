@@ -19,6 +19,9 @@ public class CitaMedicaDTO {
     private String primerApellidoUsuario;
 
     private Long idMedico;
+    private Long idEstado;
+    private String descripcionEstado;
+
 
     public Long getIdCitaMedica() {
         return idCitaMedica;
@@ -99,6 +102,24 @@ public class CitaMedicaDTO {
     public void setHoraCita(LocalTime horaCita) {
         this.horaCita = horaCita;
     }
+
+    public Long getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(Long idEstado) {
+        this.idEstado = idEstado;
+    }
+
+    public String getDescripcionEstado() {
+        return descripcionEstado;
+    }
+
+    public void setDescripcionEstado(String descripcionEstado) {
+        this.descripcionEstado = descripcionEstado;
+    }
+
+    
     
 
 }

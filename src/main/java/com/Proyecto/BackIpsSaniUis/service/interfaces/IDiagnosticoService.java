@@ -16,6 +16,9 @@ public interface IDiagnosticoService {
 
     public Diagnostico findById(Long id);
 
+    public Diagnostico findByCita(Long id);
+
+
     public Diagnostico updateDiagnostico(DiagnosticoDTO diagnosticoDTO);
 
     public Diagnostico deleteDiagnostico(Long id);

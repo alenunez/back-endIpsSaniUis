@@ -28,6 +28,7 @@ public class CitaMedicaServiceImpl implements ICitaMedicaService {
             citaMedicaToCreate.setFechaCreacion(today); // Asignar fecha y hora de creación
             citaMedicaToCreate.setFechaCita(citaMedicaDTO.getFechaCita()); // Asignar fecha de la cita
             citaMedicaToCreate.setHoraCita(citaMedicaDTO.getHoraCita()); // Asignar hora de la cita
+            citaMedicaToCreate.setIdEstado((long) 1);
     
             return citaMedicaRepository.save(citaMedicaToCreate);
         } else {
@@ -47,6 +48,11 @@ public class CitaMedicaServiceImpl implements ICitaMedicaService {
     @Override
     public List<CitaMedica> getAllCitaMedicaUsuario(Long id) {
         return citaMedicaRepository.findByUsuario(id);
+    }
+
+    @Override
+    public List<CitaMedica> getAllCitaMedicaMedico(Long id) {
+        return citaMedicaRepository.findByMedico(id);
     }
 
     @Override

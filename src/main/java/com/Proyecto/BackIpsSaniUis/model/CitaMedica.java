@@ -21,7 +21,7 @@ public class CitaMedica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CITA_MEDICA")
-    private Long idCitaMedica;
+    public Long idCitaMedica;
 
     @Column(name = "FECHA_CITA")
     @Temporal(TemporalType.DATE)
@@ -40,6 +40,10 @@ public class CitaMedica {
     @Column(name = "ID_MEDICO", nullable = false)
     private Long idMedico;
 
+
+    @Column(name = "ID_ESTADO_CITA", nullable = false)
+    private Long idEstado;
+
     //Datos que se traen por la foránea
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_USUARIO", insertable = false, updatable = false)
@@ -47,7 +51,11 @@ public class CitaMedica {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_MEDICO", insertable = false, updatable = false)
-    private Medico medico;
+    public Medico medico;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_ESTADO_CITA", insertable = false, updatable = false)
+    public EstadoCita estadoCita;
 
     // Getters and Setters
     public Date getFechaCita() {

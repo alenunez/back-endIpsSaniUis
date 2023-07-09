@@ -27,7 +27,7 @@ public class Diagnostico {
 
     // Columnas llaves foráneas
     @Column(name = "ID_CITA_MEDICA", nullable = false)
-    private Long idCitaMedica;
+    public Long idCitaMedica;
 
     @Column(name = "ID_ENFERMEDAD", nullable = false)
     private Long idEnfermedad;

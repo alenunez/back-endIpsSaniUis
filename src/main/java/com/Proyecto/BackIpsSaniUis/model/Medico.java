@@ -39,7 +39,7 @@ public class Medico implements Serializable{
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_USUARIO", insertable = false, updatable = false)
-    private Usuario usuario;
+    public Usuario usuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_ESPECIALIDAD_MEDICA", insertable = false, updatable = false)

@@ -30,9 +30,9 @@ public class Tratamiento {
     private Long idCitaMedica;
 
     //Datos que se traen por la foránea
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CITA_MEDICA", insertable = false, updatable = false)
-    private CitaMedica citaMedica;
+    public CitaMedica citaMedica;
 
     // Getters and Setters
     public LocalDateTime getFechaCreacion() {

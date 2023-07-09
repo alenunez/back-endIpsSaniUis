@@ -64,6 +64,16 @@ public class TratamientoController {
         }
         return new ResponseEntity<>(TratamientoMapper.INSTANCE.toDto(tratamiento), HttpStatus.OK);
     }
+
+    @GetMapping("/idCita/{id}")
+    public ResponseEntity<TratamientoDTO> getByCita(@PathVariable(value = "id", required = true) Long aId){
+        Tratamiento tratamiento = iTratamientoService.getTratamientoPorCita(aId);
+        if(tratamiento ==null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(TratamientoMapper.INSTANCE.toDto(tratamiento), HttpStatus.OK);
+    }
+
     @DeleteMapping("/id/{id}")
     public ResponseEntity<String> deleteTratamiento(@PathVariable(value = "id", required = true) Long aId){
         Tratamiento tratamiento = iTratamientoService.deleteTratamiento(aId);
