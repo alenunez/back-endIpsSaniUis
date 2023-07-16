@@ -55,6 +55,28 @@ public class CitaMedicaController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @PutMapping("/finalizar")
+    public ResponseEntity<CitaMedicaDTO> finalizarCitaMedica(@RequestBody CitaMedicaDTO citaMedicaDTO) {
+
+        CitaMedicaDTO citaMedicaDTOUpdate= CitaMedicaMapperImpl.INSTANCE.toDto(iCitaMedicaService.finalizarCitaMedica(citaMedicaDTO));
+
+        if(citaMedicaDTOUpdate != null){
+            return new ResponseEntity<>(citaMedicaDTOUpdate, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/cancelar")
+    public ResponseEntity<CitaMedicaDTO> cancelarCitaMedica(@RequestBody CitaMedicaDTO citaMedicaDTO) {
+
+        CitaMedicaDTO citaMedicaDTOUpdate= CitaMedicaMapperImpl.INSTANCE.toDto(iCitaMedicaService.finalizarCitaMedica(citaMedicaDTO));
+
+        if(citaMedicaDTOUpdate != null){
+            return new ResponseEntity<>(citaMedicaDTOUpdate, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<CitaMedicaDTO>> getCitaMedica(){
         List<CitaMedica> listaCitaMedica = iCitaMedicaService.getAllCitaMedica();
@@ -75,9 +97,39 @@ public class CitaMedicaController {
         ::toDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 
+    @GetMapping("/all/usuario/finalizada/id/{id}")
+    public ResponseEntity<List<CitaMedicaDTO>> getCitaMedicaUsuarioFinalizada(@PathVariable(value = "id", required = true) Long aId){
+        List<CitaMedica> listaCitaMedica = iCitaMedicaService.getAllCitaMedicaUsuarioFinalizada(aId);
+        if(listaCitaMedica.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(listaCitaMedica.stream().map(CitaMedicaMapper.INSTANCE
+        ::toDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
     @GetMapping("/all/medico/id/{id}")
     public ResponseEntity<List<CitaMedicaDTO>> getCitaMedicaMedico(@PathVariable(value = "id", required = true) Long aId){
         List<CitaMedica> listaCitaMedica = iCitaMedicaService.getAllCitaMedicaMedico(aId);
+        if(listaCitaMedica.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(listaCitaMedica.stream().map(CitaMedicaMapper.INSTANCE
+        ::toDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/all/medico/finalizada/id/{id}")
+    public ResponseEntity<List<CitaMedicaDTO>> getCitaMedicaMedicoFinalizada(@PathVariable(value = "id", required = true) Long aId){
+        List<CitaMedica> listaCitaMedica = iCitaMedicaService.getAllCitaMedicaMedicoFinalizada(aId);
+        if(listaCitaMedica.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(listaCitaMedica.stream().map(CitaMedicaMapper.INSTANCE
+        ::toDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/all/medico/cancelada/id/{id}")
+    public ResponseEntity<List<CitaMedicaDTO>> getCitaMedicaMedicoCancelada(@PathVariable(value = "id", required = true) Long aId){
+        List<CitaMedica> listaCitaMedica = iCitaMedicaService.getAllCitaMedicaMedicoCancelada(aId);
         if(listaCitaMedica.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

@@ -16,13 +16,26 @@ public interface ICitaMedicaService {
 
     public List<CitaMedica> getAllCitaMedicaUsuario(Long id);
 
+    public List<CitaMedica> getAllCitaMedicaUsuarioFinalizada(Long id);
+
+
     public List<CitaMedica> getAllCitaMedicaMedico(Long id);
+
+    public List<CitaMedica> getAllCitaMedicaMedicoFinalizada(Long id);
+
+    public List<CitaMedica> getAllCitaMedicaMedicoCancelada(Long id);
 
 
 
     public CitaMedica findById(Long id);
 
     public CitaMedica updateCitaMedica(CitaMedicaDTO citaMedicaDTO);
+
+    public CitaMedica cancelarCitaMedica(CitaMedicaDTO citaMedicaDTO);
+
+    public CitaMedica finalizarCitaMedica(CitaMedicaDTO citaMedicaDTO);
+
+
 
     public CitaMedica deleteCitaMedica(Long id);
 
