@@ -51,8 +51,25 @@ public class CitaMedicaServiceImpl implements ICitaMedicaService {
     }
 
     @Override
+    public List<CitaMedica> getAllCitaMedicaUsuarioFinalizada(Long id) {
+        return citaMedicaRepository.findByUsuarioFinalizada(id);
+    }
+
+    @Override
     public List<CitaMedica> getAllCitaMedicaMedico(Long id) {
         return citaMedicaRepository.findByMedico(id);
+    }
+
+
+    @Override
+    public List<CitaMedica> getAllCitaMedicaMedicoFinalizada(Long id) {
+        return citaMedicaRepository.findByMedicoFinalizada(id);
+    }
+
+
+    @Override
+    public List<CitaMedica> getAllCitaMedicaMedicoCancelada(Long id) {
+        return citaMedicaRepository.findByMedicoCancelada(id);
     }
 
     @Override
@@ -70,6 +87,34 @@ public class CitaMedicaServiceImpl implements ICitaMedicaService {
             // Guardar los cambios en la base de datos
             return citaMedicaRepository.save(citaMedica);
 
+        } else {
+            return null;
+        }
+    }
+
+    public CitaMedica cancelarCitaMedica(CitaMedicaDTO citaMedicaDTO) {
+        Optional<CitaMedica> optionalCitaMedica = citaMedicaRepository.findById(citaMedicaDTO.getIdCitaMedica());
+        if (optionalCitaMedica.isPresent()) {
+            CitaMedica citaMedica = optionalCitaMedica.get();
+            citaMedica.setIdEstado((long) 3);
+            // Actualizar los campos necesarios de la cita medica
+          //  citaMedica.setFechaCita(citaMedicaDTO.getFechaCita());
+            // Guardar los cambios en la base de datos
+            return citaMedicaRepository.save(citaMedica);
+        } else {
+            return null;
+        }
+    }
+
+    public CitaMedica finalizarCitaMedica(CitaMedicaDTO citaMedicaDTO) {
+        Optional<CitaMedica> optionalCitaMedica = citaMedicaRepository.findById(citaMedicaDTO.getIdCitaMedica());
+        if (optionalCitaMedica.isPresent()) {
+            CitaMedica citaMedica = optionalCitaMedica.get();
+            // Actualizar los campos necesarios de la cita medica
+            citaMedica.setIdEstado((long) 2);
+            //citaMedica.setFechaCita(citaMedicaDTO.getFechaCita());
+            // Guardar los cambios en la base de datos
+            return citaMedicaRepository.save(citaMedica);
         } else {
             return null;
         }
